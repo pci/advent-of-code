@@ -12,8 +12,8 @@ someFunc = length . filter (checkValidity2 . processLine)
 data RuleAndLine = RuleAndLine {
    x :: Int
 ,  y :: Int
-,  c        :: Char
-,  s        :: String
+,  c :: Char
+,  s :: String
 }
   deriving (Eq, Show)
 
@@ -24,9 +24,8 @@ processLine s = do
 
 checkValidity1 :: RuleAndLine -> Bool
 checkValidity1 l = do
-  let n = length $ filter (== (c l)) (s l)
-  n >= (x l) && n <= (y l)
+  (\n -> n >= (x l) && n <= (y l)) . length $ filter (== (c l)) (s l)
 
 checkValidity2 :: RuleAndLine -> Bool
--- check the length and one and only oneof the positions matches:
+-- check the length and one and only one of the positions matches:
 checkValidity2 l = ((length (s l)) >= (y l)) && (((s l)!!(x l - 1) == (c l)) /= ((s l)!!(y l - 1) == (c l)))
