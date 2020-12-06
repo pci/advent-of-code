@@ -4,8 +4,8 @@ module Lib
 
 someFunc = findMissing . map processSeat
 
--- so we can use tail recursion we reverse the order:
 processSeat :: [Char] -> Int
+-- so we can use tail recursion we reverse the order so we get LSB first:
 processSeat = processTail . reverse
 
 processTail :: [Char] -> Int
