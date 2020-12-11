@@ -10,7 +10,10 @@ import Data.Maybe
 
 -- part II
 someFunc :: [String] -> Maybe Int
-someFunc s = fmap (\cont -> (minimum cont) + (maximum cont)) $ (\codes -> findContigousMatch codes (findFirstFail codes)) . map readInt $ s
+someFunc s = do
+  codes <- return $ map readInt s
+  cont <- findContigousMatch codes (findFirstFail codes)
+  return $ (minimum cont) + (maximum cont)
 
 readInt :: String -> Int
 readInt = read
