@@ -10,4 +10,5 @@
 
 This repo contain my advent of code ramblings. I normally try a langauge I'm learning or don't know so well, please forgive the code quality if you know any of the langauges used!
 
+- [2019 - Rust (In progress)](./2019-rust)
 - [2020 - Haskell](./2020-haskell)
