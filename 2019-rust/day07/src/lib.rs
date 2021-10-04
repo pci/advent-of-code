@@ -26,16 +26,17 @@ pub fn run(config: Config) -> Result<i64, Box<dyn Error>> {
     let base_code: Vec<i64> = base_code_res?;
 
     // Part I
-    // let it = (0..5).permutations(5);
+    let it = (0..5).permutations(5);
 
-    // let mut max_value = 0;
-    // for comb in it {
-    //     let val = run_phase_setting(&base_code, comb);
-    //     if val > max_value {
-    //         max_value = val;
-    //     }
-    // }
+    let mut max_value = 0;
+    for comb in it {
+        let val = run_phase_setting(&base_code, comb);
+        if val > max_value {
+            max_value = val;
+        }
+    }
 
+    println!("part I: {:?}", max_value);
     // Ok(max_value)
 
     let it = (5..10).permutations(5);
