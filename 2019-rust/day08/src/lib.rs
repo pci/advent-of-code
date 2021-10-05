@@ -47,7 +47,7 @@ pub fn run(config: Config) -> Result<usize, Box<dyn Error>> {
     }
 
     // part II
-    let final_img = partTwo(&img);
+    let final_img = part_two(&img);
     for row in final_img.data {
         // just easier to print out to read out:
         println!("{:?}", row)
@@ -102,7 +102,7 @@ fn count(l: &Layer) -> HashMap<&usize, usize> {
     counts
 }
 
-fn partTwo(img: &Image) -> Layer {
+fn part_two(img: &Image) -> Layer {
     // 0 - black
     // 1 - white
     // 2 - transparent
