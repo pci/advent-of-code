@@ -4,15 +4,68 @@
     <meta charset="UTF-8">
     <title>Breakout!</title>
     <style>
+      html, body {
+        width: 100%;
+        height: 100%;
+      }
+
       button {
         display: block;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        background: #333;
+        color: white;
+      }
+
+      footer {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+      }
+
+      a {
+        color: white;
+        margin: 10px 0;
+      }
+
+      p {
+        margin: 0 0 15px 0;
+      }
+
+      canvas {
+        background: white;
+      }
+
+      @media (prefers-color-scheme: light) {
+        body {
+          background: white;
+          color: black;
+        }
+
+        a {
+          color: auto;
+        }
       }
     </style>
   </head>
   <body>
-    <p>Score: <span id="score">0</span></p>
+    <a href='https://pci.github.io/blog/2021/10/advent-of-code-rust-wasm-and-js/'>Blog post for this game</a>
+    <p>Rust + WebAssembly + JS = Game from 1976!</p>
+    <p>Left and Right arrows to control, or admit defeat and let the computer play.</p>
+    <label for='cheat'><input type='checkbox' id='cheat'/> Let a super-advanced-AI™️ play for you</label>
+    <label for='hardmode'><input type='checkbox' id='hardmode'/> Hard-mode (though fair warning, even easy mode is really hard...)</label>
     <button id="start" disabled="true">Insert Coin</button>
-    <canvas width="500" height="500" id="canvas"></canvas>
+    <canvas width="450" height="260" id="canvas"></canvas>
+    <p>Score: <span id="score">0</span></p>
+    <!-- uncomment for debug timing button>
+      <button id="debug">Debug timings</button>
+    <!-->
     <script src="index.js"></script>
+    <footer>Made by <a href='https://ingey.dev'>Phil Ingrey</a></footer>
   </body>
 </html>
