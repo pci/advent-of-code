@@ -147,6 +147,42 @@ State.prototype.runGame = function () {
   };
   document.addEventListener("keydown", that.keydown);
   document.addEventListener("keyup", that.keyup);
+  const left = $("#left");
+  this.leftDown = (e) => {
+    that.currentInput = -1;
+    that.input = -1;
+    e.preventDefault();
+    e.stopPropagation();
+  };
+  this.leftUp = (e) => {
+    that.currentInput = 0;
+    e.preventDefault();
+    e.stopPropagation();
+  };
+  if (left) {
+    left.addEventListener("touchstart", this.leftDown);
+    left.addEventListener("mousedown", this.leftDown);
+    left.addEventListener("touchend", this.leftUp);
+    left.addEventListener("mouseup", this.leftUp);
+  }
+  const right = $("#right");
+  this.rightDown = (e) => {
+    that.currentInput = 1;
+    that.input = 1;
+    e.preventDefault();
+    e.stopPropagation();
+  };
+  this.rightUp = (e) => {
+    that.currentInput = 0;
+    e.preventDefault();
+    e.stopPropagation();
+  };
+  if (right) {
+    right.addEventListener("touchstart", this.rightDown);
+    right.addEventListener("mousedown", this.rightDown);
+    right.addEventListener("touchend", this.rightUp);
+    right.addEventListener("mouseup", this.rightUp);
+  }
 
   return new Promise((res, rej) => {
     // setup:
@@ -157,6 +193,18 @@ State.prototype.runGame = function () {
           clearInterval(that.interval);
           document.removeEventListener("keydown", that.keydown);
           document.removeEventListener("keyup", that.keyup);
+          if (left) {
+            left.removeEventListener("touchstart", that.leftDown);
+            left.removeEventListener("mousedown", that.leftDown);
+            left.removeEventListener("touchend", that.leftUp);
+            left.removeEventListener("mouseup", that.leftUp);
+          }
+          if (right) {
+            right.removeEventListener("touchstart", that.rightDown);
+            right.removeEventListener("mousedown", that.rightDown);
+            right.removeEventListener("touchend", that.rightUp);
+            right.removeEventListener("mouseup", that.rightUp);
+          }
           res();
           return;
         }
@@ -175,10 +223,27 @@ State.prototype.runGame = function () {
   const ctx = canvas.getContext("2d");
   const start = $("#start");
   const debug = $("#debug");
+  const left = $("#left");
+  const right = $("#right");
   const rust = await import("../pkg/index.js").catch(console.error);
 
   // enable start button
   start.removeAttribute("disabled");
+  canvas.width = 450;
+  canvas.height = 260;
+
+  const stopEvent = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+  if (left) {
+    left.addEventListener("click", stopEvent);
+    left.addEventListener("dblclick", stopEvent);
+  }
+  if (right) {
+    right.addEventListener("click", stopEvent);
+    right.addEventListener("dblclick", stopEvent);
+  }
 
   let pong;
   start.addEventListener("click", () => {

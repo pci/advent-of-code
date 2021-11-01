@@ -2,9 +2,10 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Breakout!</title>
     <style>
-      html, body {
+      html {
         width: 100%;
         height: 100%;
       }
@@ -14,6 +15,10 @@
       }
 
       body {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -39,6 +44,28 @@
 
       canvas {
         background: white;
+        width: 100%;
+      }
+
+      .options {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-items: flex-start;
+        margin-bottom: 10px;
+      }
+
+      .mobileButtons {
+        width: 100%;
+        font-size: 5rem;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .mobileButtons span {
+        cursor: pointer;
+        user-select: none;
+        touch-action: manipulation;
       }
 
       @media (prefers-color-scheme: light) {
@@ -54,18 +81,21 @@
     </style>
   </head>
   <body>
-    <a href='https://pci.github.io/blog/2021/10/advent-of-code-rust-wasm-and-js/'>Blog post for this game</a>
+    <a target='_blank' href='https://pci.github.io/blog/2021/10/advent-of-code-rust-wasm-and-js/'>Blog post for this game</a>
     <p>Rust + WebAssembly + JS = Game from 1976!</p>
-    <p>Left and Right arrows to control, or admit defeat and let the computer play.</p>
-    <label for='cheat'><input type='checkbox' id='cheat'/> Let a super-advanced-AI™️ play for you</label>
-    <label for='hardmode'><input type='checkbox' id='hardmode'/> Hard-mode (though fair warning, even easy mode is really hard...)</label>
+    <p>Left and Right arrows to control, or hand arrows on mobile, or just admit defeat check the boxes below and let the computer play.</p>
+    <div class="options">
+      <label for='cheat'><input type='checkbox' id='cheat'/> Let a super-advanced-AI™️ play for you</label>
+      <label for='hardmode'><input type='checkbox' id='hardmode'/> Hard-mode (though fair warning, even easy mode is really hard...)</label>
+    </div>
     <button id="start" disabled="true">Insert Coin</button>
-    <canvas width="450" height="260" id="canvas"></canvas>
+    <canvas id="canvas"></canvas>
+    <div class="mobileButtons"><span id="left">👈</span><span id="right">👉</span></div>
     <p>Score: <span id="score">0</span></p>
     <!-- uncomment for debug timing button>
       <button id="debug">Debug timings</button>
     <!-->
     <script src="index.js"></script>
-    <footer>Made by <a href='https://ingey.dev'>Phil Ingrey</a></footer>
+    <footer>Made by <a href='https://ingrey.dev' target='_blank' >Phil Ingrey</a></footer>
   </body>
 </html>
